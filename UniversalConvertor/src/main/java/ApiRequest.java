@@ -6,7 +6,7 @@ public class ApiRequest  {
                 "NZD", "MXN", "SGD", "HKD", "NOK", "KRW", "TRY", "RUB", "INR", "BRL", "GBP"
         };
 
-        new MakeWindow(DIVISAS, DIVISAS);
+        new CoinsGUI(DIVISAS, DIVISAS);
 
     }
 }
