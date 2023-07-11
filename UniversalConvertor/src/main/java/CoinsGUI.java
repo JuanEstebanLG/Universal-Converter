@@ -146,7 +146,10 @@ public class CoinsGUI extends  makeForms {
     }
 
     public void changeState(){
-        new TemperaturaGUI();
+        frame.remove(menuPrincipal);
+        frame.remove(panelPrincipal);
+        new TemperaturaGUI(frame);
+
     }
 
 }
