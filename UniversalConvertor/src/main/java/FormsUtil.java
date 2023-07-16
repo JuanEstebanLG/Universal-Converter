@@ -107,7 +107,7 @@ public class FormsUtil extends ChangeForm {
 
             if(conversionFactors.containsKey(conversionKey)){
                 double factorDeConversion = conversionFactors.get(conversionKey);
-                return (inputUser * factorDeConversion ) + getOffset(unitFrom, unitTo);
+                return Math.round((inputUser * factorDeConversion ) + getOffset(unitFrom, unitTo));
             }
 
         }else if(type.equals("distancias")){
@@ -122,6 +122,7 @@ public class FormsUtil extends ChangeForm {
             if(conversionFactors.containsKey(conversionKey)){
                 double factorDeConversion = conversionFactors.get(conversionKey);
                 return inputUser * factorDeConversion;
+
             }
         }
         return  inputUser;
@@ -133,7 +134,7 @@ public class FormsUtil extends ChangeForm {
         return inputUser;
     }
 
-    private static double getOffset(String unitFrom, String unitTo) {
+    private static double getOffset(String unitFrom, String unitTo ) {
         String unidadOrigen = unitFrom.toLowerCase();
         String unidadDestino = unitTo.toLowerCase();
         if (unidadOrigen.equals("celsius") && unidadDestino.equals("fahrenheit")) {
@@ -141,9 +142,9 @@ public class FormsUtil extends ChangeForm {
         }else if(unidadOrigen.equals("celsius") && unidadDestino.equals("kelvin")){
             return 273.15;
         } else if (unidadOrigen.equals("fahrenheit") && unidadDestino.equals("celsius")) {
-            return -32.0;
+            return -17.78;
         } else if (unidadOrigen.equals("fahrenheit") && unidadDestino.equals("kelvin")) {
-            return 459.67;
+            return 255.82;
         } else if (unidadOrigen.equals("kelvin") && unidadDestino.equals("fahrenheit")) {
             return -459.67;
         }else if(unidadOrigen.equals("kelvin") && unidadDestino.equals("celsius")){
