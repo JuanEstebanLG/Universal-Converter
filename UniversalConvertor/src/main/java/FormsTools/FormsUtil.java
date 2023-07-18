@@ -246,7 +246,7 @@ public class FormsUtil extends FormFunctions {
         unidadOrigen.setBounds( 10, 100, 150, 25);
         unidadDestino.setBounds(x - 160, 100, 150, 25);
         inputUser.setBounds((x/2) - 100, y/2, 200, 25 );
-        setButtonStyle(send_button, (x/2) - 75, (y/2) + 20, 150, 30, Color.WHITE);
+        setButtonStyle(send_button, (x/2) - 75, (y/2) + 40, 150, 30, Color.WHITE);
         labelBackground.setBounds(0,0,x,y);
 
         menu_button.setBounds(0,0, 70, 70);
