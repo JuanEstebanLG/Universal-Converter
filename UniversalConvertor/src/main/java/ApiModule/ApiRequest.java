@@ -1,3 +1,6 @@
+package ApiModule;
+
+import FormsModule.CoinsGUI;
 
 public class ApiRequest  {
     public static void main(String[] args) {
