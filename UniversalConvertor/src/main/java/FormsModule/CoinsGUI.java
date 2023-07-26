@@ -110,7 +110,7 @@ public class CoinsGUI extends FormsUtil {
      * @param frame Frame donde se origina la alerta.
      */
     public void makeAlert(String result,String divisaFinal, JFrame frame){
-        String response = String.format("Recuerde que la conversión puede variar según las fuentes \n La conversion es aproximadamente: %s %s", result, divisaFinal);
+        String response = String.format("Recuerde que la conversion puede variar segun las fuentes \n La conversion es aproximadamente: %s %s", result, divisaFinal);
         JOptionPane.showMessageDialog(frame, response);
     }
 
@@ -144,7 +144,7 @@ public class CoinsGUI extends FormsUtil {
             makeAlert(result,secondCoin, frame);
         } catch (InvalidCharacterException ex) {
             String message = ex.getMessage();
-            String messageAlert = String.format("El carácter ingresado no es un numero o contiene símbolos no permitidos\n $s", message);
+            String messageAlert = String.format("El caracter ingresado no es un numero o contiene símbolos no permitidos\n $s", message);
             JOptionPane.showMessageDialog(frame, messageAlert);
 
         }

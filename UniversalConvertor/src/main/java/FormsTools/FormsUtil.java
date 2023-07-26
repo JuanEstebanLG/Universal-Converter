@@ -16,12 +16,12 @@ import java.awt.*;
      * como para filtrar caracteres en los inputs.
      *
      * */
-public class FormsUtil extends FormFunctions {
+public abstract class FormsUtil extends FormFunctions {
 
     private static boolean showMenu = false;
 
         /**
-         * Este metodó es utilizado en todos los JTextField a lo largo del proyecto.
+         * Este metodo es utilizado en todos los JTextField a lo largo del proyecto.
          * La función que desempeña es la de filtrar y evitar el uso de caracteres, eliminando todos los símbolos a excepción de los números
          * y del punto.
          * @param textField JTextField a filtrar.
@@ -36,7 +36,7 @@ public class FormsUtil extends FormFunctions {
                 // Este método se llama al insertar texto en el campo de texto.
 
                 // Verifica si el texto contiene solo números y puntos decimales.
-                if (text.matches("[0-9.]+")) {
+                if (text.matches("[0-9]+")) {
                     // Si el texto es válido, se llama al método insertString de la superclase DocumentFilter.
                     super.insertString(fb, offset, text, attr);
                 }
@@ -48,7 +48,7 @@ public class FormsUtil extends FormFunctions {
                 // Este método se llama al reemplazar texto existente en el campo de texto.
 
                 // Verifica si el texto contiene solo números y puntos decimales.
-                if (text.matches("[0-9.]+")) {
+                if (text.matches("[0-9]+")) {
                     // Si el texto es válido, se llama al método replace de la superclase DocumentFilter.
                     super.replace(fb, offset, length, text, attrs);
                 }
@@ -76,12 +76,16 @@ public class FormsUtil extends FormFunctions {
         /*
             Sé instancia el panel con las posiciones, el tamaño y el color definidos.
          */
+
         panel.setBounds(positionX, positionY, width, height);
         panel.setBackground(color);
+
         //Se define el layout del panel en null
+
         panel.setLayout(null);
 
         //Se añade el panel al frame
+
         jFrame.add(panel);
 
     }
@@ -111,39 +115,44 @@ public class FormsUtil extends FormFunctions {
         if(!state){
 
             //Creación de los 3 botones encargados de redirigir al usuario a alguno de los otros formularios
-            JButton changeToTemp = new JButton("Temperaturas");
-            JButton changeToLY = new JButton("Distancias");
-            JButton changeToCoin = new JButton("Divisas");
+            JButton[] buttonsChange = new JButton[3];
+
+            buttonsChange[0] = new JButton("Divisas");
+            buttonsChange[1] = new JButton("Distancias");
+            buttonsChange[2] = new JButton("Temperaturas");
+
+
             /*
                 Cambio en el tamaño del panel principal y la posición de sus componentes; Creación del menu.
              */
+
             mainView.setBounds(100, 0, x - 100, y);
             makePanel(frame, menu, 0, 0, 100, y, Color.WHITE);
 
-            origen.setBounds(10, 100, 150, 25);
-            destino.setBounds((x - 100) - 160, 100, 150, 25);
+            origen.setBounds((700/2) - 150, 100, 150, 25);
+            destino.setBounds(700 - 250 , 100, 150, 25);
 
             //Añadiendo los botones al menu
-            menu.add(changeToTemp);
-            menu.add(changeToLY);
-            menu.add(changeToCoin);
+            menu.add(buttonsChange[0]);
+            menu.add(buttonsChange[1]);
+            menu.add(buttonsChange[2]);
 
             //Estableciendo el estilo y posición de los botones.
 
-            setButtonStyle(changeToCoin, 0, 80, 100, 30, Color.WHITE);
-            setButtonStyle(changeToTemp, 0, 135,100, 30, Color.WHITE);
-            setButtonStyle(changeToLY, 0, 185,100, 30,  Color.WHITE);
-
-
+            setButtonStyle(buttonsChange[0], 0, 80, 100, 30, Color.WHITE);
+            setButtonStyle(buttonsChange[1], 0, 135,100, 30, Color.WHITE);
+            setButtonStyle(buttonsChange[2], 0, 185,100, 30,  Color.WHITE);
 
 
             /*
                 El action listener común entre los 3 botones tendrá la capacidad de redirigir al usuario a alguno de los formularios.
                 Para ello usará el método ChangeState
              */
-            changeToCoin.addActionListener(e -> changeState(frame, menu, mainView, 0));
-            changeToTemp.addActionListener(e -> changeState(frame, menu, mainView, 1));
-            changeToLY.addActionListener(e -> changeState(frame, menu, mainView, 2));
+
+
+            buttonsChange[0].addActionListener(e -> changeState(frame, menu, mainView, 0));
+            buttonsChange[1].addActionListener(e -> changeState(frame, menu, mainView, 2));
+            buttonsChange[2].addActionListener(e -> changeState(frame, menu, mainView, 1));
 
             //El valor del estado cambia a true
 
@@ -153,8 +162,8 @@ public class FormsUtil extends FormFunctions {
 
             frame.remove(menu);
             mainView.setBounds(0,0,x,y);
-            origen.setBounds(10, 100, 150, 25);
-            destino.setBounds(x - 160, 100, 160, 25);
+            origen.setBounds((x/2) - 250, 100, 150, 25);
+            destino.setBounds(x - 300, 100, 150, 25);
 
             //El valor del estado cambia a false.
             state = false;
@@ -215,9 +224,11 @@ public class FormsUtil extends FormFunctions {
 
     public void MakeGUIS(JFrame frame,JPanel panelPrincipal, String imgLocation, Color color, String[] Origen, String[] Destino){
         //Sé establece el tamaño base del frame.
-        int x = 800;
-        int y = 500;
+        final int x = 800;
+        final int y = 500;
+        final int posicionCenter = (x/2);
         //Sé crea el frame y se establecen sus características
+
         final ImageIcon icon = new ImageIcon(imgLocation);
         JLabel labelBackground = new JLabel(icon);
         frame.setSize(x,y);
@@ -232,6 +243,7 @@ public class FormsUtil extends FormFunctions {
 
         JComboBox<String> unidadOrigen = new JComboBox<>(Origen);
         JComboBox<String> unidadDestino = new JComboBox<>(Destino);
+
         JTextField inputUser = new JTextField();
         JButton menu_button = new JButton("Menu");
         JButton send_button = new JButton("Transformar");
@@ -243,10 +255,11 @@ public class FormsUtil extends FormFunctions {
 
         //Sé asigna el tamaño y posición de las listas, el input y los botones.
 
-        unidadOrigen.setBounds( 10, 100, 150, 25);
-        unidadDestino.setBounds(x - 160, 100, 150, 25);
-        inputUser.setBounds((x/2) - 100, y/2, 200, 25 );
-        setButtonStyle(send_button, (x/2) - 75, (y/2) + 40, 150, 30, Color.WHITE);
+        unidadOrigen.setBounds( posicionCenter - 250, 100, 150, 25);
+        unidadDestino.setBounds(x - 300, 100, 150, 25);
+
+        inputUser.setBounds(posicionCenter - 100, y/2, 200, 25 );
+        setButtonStyle(send_button, posicionCenter - 75, (y/2) + 40, 150, 30, Color.WHITE);
         labelBackground.setBounds(0,0,x,y);
 
         menu_button.setBounds(0,0, 70, 70);

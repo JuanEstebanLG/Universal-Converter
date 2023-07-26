@@ -65,10 +65,12 @@ public class ApiClass {
                response.append(line);
            }
            reader.close();
-           JSONObject JSON_RESPONSE = new JSONObject(response.toString());
 
+
+           JSONObject JSON_RESPONSE = new JSONObject(response.toString());
             double CONVERSION_RATE = JSON_RESPONSE.getDouble("conversion_rate");
             return CONVERSION_RATE;
+
        }else {
            System.out.println("A ocurrido un error");
            return -1;

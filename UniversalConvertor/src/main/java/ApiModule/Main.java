@@ -1,5 +1,4 @@
 package ApiModule;
-
 import FormsModule.CoinsGUI;
 
 /**
